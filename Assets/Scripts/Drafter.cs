@@ -20,16 +20,32 @@ namespace DefaultNamespace {
         [SerializeField] Button _setAmount;
 
         TextAsset _civsText;
+        string _path; 
         List<PlayerInfo> _infos;
         List<string> _civs;
         int _amount = 1;
         void Start() {
+           _path = Application.persistentDataPath + "/Civs.txt";
             _refresh.onClick.RemoveAllListeners();
             _refresh.onClick.AddListener(Refresh);
             _infos = new List<PlayerInfo>();
             _civs = new List<string>();
-            _civsText = Resources.Load<TextAsset>("Civs");
-            _civs = _civsText.text.Split('\n').ToList();
+            
+            
+            if (File.Exists(_path)) {
+                using StreamReader sr = File.OpenText(_path);
+                string text = sr.ReadToEnd();
+                _civs = text.Split('\n').ToList();
+            }
+            else {
+                using StreamWriter sw = File.CreateText(_path);
+                _civsText = Resources.Load<TextAsset>("Civs");
+                _civs = _civsText.text.Split('\n').ToList();
+
+                foreach (var civ in _civs) {
+                    sw.WriteLine(civ);
+                }
+            }
             _addPlayer.onClick.RemoveAllListeners();
             _addPlayer.onClick.AddListener(CreatePlayerInfo);
             _draft.onClick.RemoveAllListeners();
