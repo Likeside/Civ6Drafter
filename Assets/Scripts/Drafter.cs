@@ -15,10 +15,11 @@ namespace DefaultNamespace {
         [SerializeField] GameObject _infoPrefab;
         [SerializeField] Transform _infoParent;
         [SerializeField] Button _draft;
-        [SerializeField] TextAsset _civsText;
+       
         [SerializeField] Button _refresh;
         [SerializeField] Button _setAmount;
 
+        TextAsset _civsText;
         List<PlayerInfo> _infos;
         List<string> _civs;
         int _amount = 1;
@@ -27,6 +28,7 @@ namespace DefaultNamespace {
             _refresh.onClick.AddListener(Refresh);
             _infos = new List<PlayerInfo>();
             _civs = new List<string>();
+            _civsText = Resources.Load<TextAsset>("Civs");
             _civs = _civsText.text.Split('\n').ToList();
             _addPlayer.onClick.RemoveAllListeners();
             _addPlayer.onClick.AddListener(CreatePlayerInfo);
