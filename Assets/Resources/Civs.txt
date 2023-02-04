@@ -56,12 +56,12 @@ Mongolian (Kublai Khan)
 French (Catherine de Medici - Magnificence)
 American (Teddy Roosevelt - Rough Rider)
 Portuguese (João III)
-США (Линкольн - новый)
-Конго (Зинга Мбанди Нгола - новый)
-Аравия (Салах ад-Дин - новый)
-Япония (Токугава - новый)
-Персия (Надир-шах Афшар - новый)
-Османская империя (Сулейман - новый)
-Yongle (China)
-Wu Zetian (China)
-Qin Shi Huang the Unifier (China)
+США (Линкольн - новый)#
+Конго (Зинга Мбанди Нгола - новый)#
+Аравия (Салах ад-Дин - новый)#
+Япония (Токугава - новый)#
+Персия (Надир-шах Афшар - новый)#
+Османская империя (Сулейман - новый)#
+Yongle (China)#
+Wu Zetian (China)#
+Qin Shi Huang the Unifier (China)#

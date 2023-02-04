@@ -9,8 +9,10 @@ public class PlayerInfo : MonoBehaviour {
   [SerializeField] TextMeshProUGUI _playerName;
   [SerializeField] TextMeshProUGUI _playerCivs;
   [SerializeField] Button _deleteBtn;
+  [SerializeField] Toggle _newCivsBan;
 
 
+  public bool NewCivsBanned => _newCivsBan.isOn;
   public event Action<PlayerInfo> OnDeleteBtnPressed;
 
   
@@ -18,6 +20,7 @@ public class PlayerInfo : MonoBehaviour {
       _deleteBtn.onClick.RemoveAllListeners();
       _deleteBtn.onClick.AddListener((() => OnDeleteBtnPressed?.Invoke(this)));
       _deleteBtn.onClick.AddListener((() => Destroy(gameObject)));
+      _newCivsBan.isOn = false;
   }
 
   public void SetName(string playerName) {

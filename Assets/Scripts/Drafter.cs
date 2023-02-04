@@ -66,8 +66,17 @@ namespace DefaultNamespace {
                 for (int i = 0; i < _amount; i++) {
 
                     foreach (var info in _infos) {
+
                         var randomIndex = Random.Range(0, _civs.Count);
-                        info.AddCiv(_civs[randomIndex]);
+                        if (info.NewCivsBanned) {
+                            int maxAttempts = 40;
+                            while (_civs[randomIndex].EndsWith("#") && maxAttempts > 0) {
+                                randomIndex = Random.Range(0, _civs.Count);
+                                maxAttempts--;
+                            }
+                        }
+                        
+                        info.AddCiv(_civs[randomIndex].Trim());
                         _civs.RemoveAt(randomIndex);
                     }
 
@@ -107,5 +116,6 @@ namespace DefaultNamespace {
             _playerName.text = String.Empty;
 
         }
+        
     }
 }
