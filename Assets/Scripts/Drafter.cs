@@ -31,21 +31,7 @@ namespace DefaultNamespace {
             _infos = new List<PlayerInfo>();
             _civs = new List<string>();
             
-            
-            if (File.Exists(_path)) {
-                using StreamReader sr = File.OpenText(_path);
-                string text = sr.ReadToEnd();
-                _civs = text.Split('\n').ToList();
-            }
-            else {
-                using StreamWriter sw = File.CreateText(_path);
-                _civsText = Resources.Load<TextAsset>("Civs");
-                _civs = _civsText.text.Split('\n').ToList();
-
-                foreach (var civ in _civs) {
-                    sw.WriteLine(civ);
-                }
-            }
+            SetCivs();
             _addPlayer.onClick.RemoveAllListeners();
             _addPlayer.onClick.AddListener(CreatePlayerInfo);
             _draft.onClick.RemoveAllListeners();
@@ -106,7 +92,7 @@ namespace DefaultNamespace {
             }
             _infos = new List<PlayerInfo>();
             _civs = new List<string>();
-            _civs = _civsText.text.Split('\n').ToList();
+            SetCivs();
             _addPlayer.onClick.RemoveAllListeners();
             _addPlayer.onClick.AddListener(CreatePlayerInfo);
             _draft.onClick.RemoveAllListeners();
@@ -115,6 +101,23 @@ namespace DefaultNamespace {
             _civAmount.text = String.Empty;
             _playerName.text = String.Empty;
 
+        }
+
+        void SetCivs() {
+            if (File.Exists(_path)) {
+                using StreamReader sr = File.OpenText(_path);
+                string text = sr.ReadToEnd();
+                _civs = text.Split('\n').ToList();
+            }
+            else {
+                using StreamWriter sw = File.CreateText(_path);
+                _civsText = Resources.Load<TextAsset>("Civs");
+                _civs = _civsText.text.Split('\n').ToList();
+
+                foreach (var civ in _civs) {
+                    sw.WriteLine(civ);
+                }
+            }
         }
         
     }
